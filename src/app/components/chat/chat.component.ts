@@ -4,7 +4,8 @@ import {SocketService} from '../../services/socket.service';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
+  providers : [SocketService]
 })
 export class ChatComponent implements OnInit {
 
@@ -15,12 +16,16 @@ export class ChatComponent implements OnInit {
   constructor(private socketService: SocketService) { }
 
   ngOnInit() {
-    this.messages = this.socketService.getMessage();
+    // this.messages = this.socketService.getMessage();
+    this.socketService.getMessage().subscribe((message) => {
+      console.log('got message', message);
+    })
   }
 
   protected handleFormSubmit(event: Event) {
     event.preventDefault();
     console.log('value', this.textInput.nativeElement.value);
+    this.socketService.sendMessage(this.textInput.nativeElement.value);
   }
 
 }

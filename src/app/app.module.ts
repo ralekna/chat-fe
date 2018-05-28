@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
-const config: SocketIoConfig = { url: 'http://0.0.0.0:5000', options: {} }
+const config: SocketIoConfig = { url: 'http://localhost:5000/', options: {} }
 
 import { AppComponent } from './app.component';
 import { ChatComponent } from './components/chat/chat.component';
