@@ -1,0 +1,11 @@
+<div>
+  <form (submit)="handleFormSubmit($event)">
+    <input #text type="text">
+    <button type="submit">Submit</button>
+  </form>
+  <div>
+    <ul>
+      <li *ngFor="let message of messages | async">{{message.message}}</li>
+    </ul>
+  </div>
+</div>
