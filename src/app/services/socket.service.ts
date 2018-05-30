@@ -1,23 +1,42 @@
 import { Injectable } from '@angular/core';
-// import 'rxjs/add/operator/map';
 import { SocketIo } from 'ng-io';
-// import {map} from 'rxjs/operators';
 import {map} from 'rxjs/operators';
+import {merge} from 'rxjs';
+import Message, {MessageType} from '../models/message.model';
+import {Observable} from 'rxjs/internal/Observable';
 
 @Injectable()
 export class SocketService {
 
   constructor(private socket: SocketIo) { }
 
-  sendMessage(message: string, channel: string = "message"): void {
-    this.socket.emit(channel, message);
+  sendMessage(message: Message): void {
+
+    this.socket.emit(message.type, message);
   }
 
-  getMessage() {
-    return this.socket
-      .fromEvent<{message: string; details: string}>("message")
+  getMessage(): Observable<Message> {
+    return merge(this.socket
+      .fromEvent<Message>(MessageType.MESSAGE)
       .pipe(
-        map( data => data.message )
-      )
+        map( message => {
+          message.type = MessageType.MESSAGE;
+          return message;
+        })
+      ), this.socket
+      .fromEvent<Message>(MessageType.NOTIFICATION)
+      .pipe(
+        map( message => {
+          message.type = MessageType.NOTIFICATION;
+          return message;
+        })
+      ), this.socket
+      .fromEvent<Message>(MessageType.JOIN)
+      .pipe(
+        map( message => {
+          message.type = MessageType.JOIN;
+          return message;
+        })
+      ));
   }
 }

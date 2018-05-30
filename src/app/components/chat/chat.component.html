@@ -1,7 +1,7 @@
 <div>
   <div>
     <ul class="messages">
-      <li *ngFor="let message of messages">{{message}}</li>
+      <li *ngFor="let message of messages"><strong>{{message.user}}</strong> {{message.text}}</li>
     </ul>
   </div>
   <form #messageForm="ngForm" (ngSubmit)="handleFormSubmit(messageForm)" ngForm>
