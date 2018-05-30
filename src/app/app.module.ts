@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { NgIoModule, NgIoConfig } from 'ng-io';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatInputModule, MatFormFieldModule} from '@angular/material';
+import {MatButtonModule, MatInputModule, MatFormFieldModule, MatTabsModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ChatComponent } from './components/chat/chat.component';
@@ -24,7 +24,8 @@ const config: NgIoConfig = { url: 'http://localhost:5000', options: {} };
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatTabsModule
   ],
   providers: [
     SocketService
