@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
-import {Socket} from 'ng-socket-io';
-import {Observable} from "rxjs/Observable";
-import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/map';
+import { SocketIo } from 'ng-io';
+// import {map} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class SocketService {
 
-  constructor(private socket: Socket) { }
+  constructor(private socket: SocketIo) { }
 
   sendMessage(message: string, channel: string = "message"): void {
     this.socket.emit(channel, message);
   }
 
-  getMessage(): Observable<string> {
+  getMessage() {
     return this.socket
       .fromEvent<{message: string; details: string}>("message")
-      .map( data => data.message );
+      .pipe(
+        map( data => data.message )
+      )
   }
 }
