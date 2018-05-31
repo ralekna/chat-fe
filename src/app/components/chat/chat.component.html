@@ -1,5 +1,5 @@
-<div>
-  <div>
+<div class="container">
+  <div class="tabs">
     <mat-tab-group> <!-- (selectedTabChange)="currentRoom = $event.tab"-->
       <mat-tab *ngFor="let room of rooms" label="{{room}}">
         <ul class="messages">
@@ -8,9 +8,9 @@
       </mat-tab>
     </mat-tab-group>
   </div>
-  <form #messageForm="ngForm" (ngSubmit)="handleFormSubmit(messageForm)" ngForm>
-    <mat-form-field class="example-full-width">
-      <input #text="ngModel" name="text" matInput placeholder="Enter message" [(ngModel)]="currentMessage">
+  <form #messageForm="ngForm" (ngSubmit)="handleFormSubmit(messageForm)" ngForm class="input">
+    <mat-form-field class="example-full-width input-field">
+      <input #text="ngModel" name="text" [autocomplete]="false" matInput placeholder="Enter message" [(ngModel)]="currentMessage">
     </mat-form-field>
     <button mat-raised-button color="primary">Submit</button>
   </form>

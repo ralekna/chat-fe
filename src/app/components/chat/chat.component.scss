@@ -1,12 +1,62 @@
-.messages {
-  list-style-type: none;
-  
-  text-align: left;
-  border: 1px solid #666;
-  padding-left: 0;
+.container {
 
-  li {
-    padding: 2px;
-    background-color: cornflowerblue;
+  position: fixed;
+  top:0;
+  left:0;
+  right: 0;
+  bottom: 0;
+
+
+  .tabs {
+    position: fixed;
+
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 200px;
+
+    .messages {
+
+      position:fixed;
+      top: 50px;
+      left:0;
+      right:0;
+      bottom: 50px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+
+      list-style-type: none;
+
+      text-align: left;
+      border: 1px solid #666;
+      padding-left: 0;
+
+      li {
+        padding: 2px;
+        background-color: cornflowerblue;
+      }
+    }
+  }
+
+
+  .input {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    align-content: stretch;
+
+    .input-field {
+      flex: 2 0px;
+    }
   }
 }
+
+
