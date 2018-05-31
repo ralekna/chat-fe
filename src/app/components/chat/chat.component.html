@@ -3,7 +3,7 @@
     <mat-tab-group> <!-- (selectedTabChange)="currentRoom = $event.tab"-->
       <mat-tab *ngFor="let room of rooms" label="{{room}}">
         <ul class="messages">
-          <li *ngFor="let message of getRoomMessages(room)"><strong>{{message.user}}</strong> {{message.text}}</li>
+          <li *ngFor="let message of getRoomMessages(room)"><strong>{{message.user}}: </strong> <span [innerHTML]="message.htmlText ? message.htmlText : message.text"></span></li>
         </ul>
       </mat-tab>
     </mat-tab-group>

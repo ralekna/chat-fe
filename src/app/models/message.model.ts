@@ -8,7 +8,10 @@ export default class Message {
       | MessageType.CONNECTION
       | MessageType.NOTIFICATION
       | MessageType.DISCONNECT
+      | MessageType.NICK
       | MessageType.JOIN = MessageType.MESSAGE,
+    public htmlText?: string,
+    public data?: any
   ) {
 
   }
@@ -20,5 +23,6 @@ export enum MessageType {
   NOTIFICATION = "notification",
   CONNECTION = "connection",
   DISCONNECT = "disconnect",
-  JOIN = "join"
+  JOIN = "join",
+  NICK = "nick"
 }

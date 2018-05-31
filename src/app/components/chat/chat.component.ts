@@ -28,12 +28,18 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     this.socketService.getMessage().subscribe((message) => {
+      message.htmlText = message.text.replace(/\n/g, "<br>");
       this.messages.push(message);
       if (message.type === MessageType.JOIN) {
         const roomName = message.room as string;
         this.currentRoom = roomName;
-        this.currentNickname = message.user;
         this.rooms.push(roomName);
+        if (message.data && message.data.user) {
+          this.currentNickname = message.data.user as string;
+        }
+      }
+      if (message.type === MessageType.NICK) {
+        this.currentNickname = message.data.user as string;
       }
       console.log('got message', message);
     });

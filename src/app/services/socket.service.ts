@@ -40,6 +40,15 @@ export class SocketService {
             message.type = MessageType.JOIN;
             return message;
           })
+        ),
+      this.socket
+        .fromEvent<Message>(MessageType.NICK)
+        .pipe(
+          map( message => {
+            console.log(message);
+            message.type = MessageType.NICK;
+            return message;
+          })
         )
     );
   }
