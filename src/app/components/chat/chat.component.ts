@@ -27,18 +27,20 @@ export class ChatComponent implements OnInit {
   constructor(private socketService: SocketService) { }
 
   ngOnInit() {
-    // this.messages = this.socketService.getMessage();
     this.socketService.getMessage().subscribe((message) => {
       this.messages.push(message);
       if (message.type === MessageType.JOIN) {
-        this.rooms.push(message.room as string);
+        const roomName = message.room as string;
+        this.currentRoom = roomName;
+        this.currentNickname = message.user;
+        this.rooms.push(roomName);
       }
       console.log('got message', message);
     });
   }
 
   protected handleFormSubmit(form: NgForm) {
-    const message = new Message(form.value.text, this.currentRoom, this.currentNickname, new Date());
+    const message = new Message(form.value.text, this.currentRoom, this.currentNickname);
     this.socketService.sendMessage(message);
     this.messages.push(message);
     this.currentMessage = "";

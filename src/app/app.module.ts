@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { ChatComponent } from './components/chat/chat.component';
 import {SocketService} from './services/socket.service';
 
-const config: NgIoConfig = { url: 'http://localhost:5000', options: {} };
+const config: NgIoConfig = { url: 'http://localhost:5000/', options: {} };
 
 @NgModule({
   declarations: [

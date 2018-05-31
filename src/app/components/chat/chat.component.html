@@ -1,6 +1,6 @@
 <div>
   <div>
-    <mat-tab-group (selectedTabChange)="currentRoom = $event.tab">
+    <mat-tab-group> <!-- (selectedTabChange)="currentRoom = $event.tab"-->
       <mat-tab *ngFor="let room of rooms" label="{{room}}">
         <ul class="messages">
           <li *ngFor="let message of getRoomMessages(room)"><strong>{{message.user}}</strong> {{message.text}}</li>
